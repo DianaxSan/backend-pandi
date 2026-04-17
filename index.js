@@ -33,18 +33,21 @@ app.post('/usuario', (req, res) => {
   });
 });
 
-app.post('/producto', (req, res) => {
-  const { nombre, precio, descripcion } = req.body;
+app.post('/productos', (req, res) => {
+  const { nombre, precio, descripcion, imagen } = req.body;
 
-  if (!nombre || precio == null || !descripcion) {
+  if (!nombre || precio == null || !descripcion || !imagen) {
     return res.status(400).json({
       error: 'Faltan datos'
     });
   }
 
-  const sql = 'INSERT INTO productos (nombre, precio, descripcion) VALUES (?, ?, ?)';
+  const sql = `
+    INSERT INTO productos (nombre, precio, descripcion, imagen)
+    VALUES (?, ?, ?, ?)
+  `;
 
-  db.query(sql, [nombre, precio, descripcion], (err, result) => {
+  db.query(sql, [nombre, precio, descripcion, imagen], (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).json({
