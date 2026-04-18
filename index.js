@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const db = require('./db');
+const db = require('./src/config/db');
 const PORT = process.env.PORT || 3000;
 
 
