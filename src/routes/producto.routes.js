@@ -1,13 +1,21 @@
 import express from "express";
-import { crearProducto, obtenerProductos } from "../controllers/producto.controller.js";
+import { 
+  crearProducto, 
+  actualizarProducto, 
+  eliminarProducto 
+} from "../controllers/producto.controller.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
+// Público
 router.get("/", obtenerProductos);
-router.post("/", crearProducto);
+
+// Protegido
 router.post("/", verifyToken, crearProducto);
-//router.put("/:id", verifyToken, actualizarProducto);
-//router.delete("/:id", verifyToken, eliminarProducto);
+
+// (luego)
+// router.put("/:id", verifyToken, actualizarProducto);
+// router.delete("/:id", verifyToken, eliminarProducto);
 
 export default router;
