@@ -17,3 +17,18 @@ export const crearProducto = async (req, res) => {
     res.status(500).json({ error: "Error al crear producto" });
   }
 };
+
+export const actualizarProducto = async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  const producto = await productoService.update(id, data);
+  res.json(producto);
+};
+
+export const eliminarProducto = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await productoService.remove(id);
+  res.json(result);
+};

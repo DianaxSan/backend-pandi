@@ -1,5 +1,6 @@
 import express from "express";
 import { 
+  obtenerProductos,
   crearProducto, 
   actualizarProducto, 
   eliminarProducto 
@@ -13,9 +14,7 @@ router.get("/", obtenerProductos);
 
 // Protegido
 router.post("/", verifyToken, crearProducto);
-
-// (luego)
-// router.put("/:id", verifyToken, actualizarProducto);
-// router.delete("/:id", verifyToken, eliminarProducto);
+router.put("/:id", verifyToken, actualizarProducto);
+router.delete("/:id", verifyToken, eliminarProducto);
 
 export default router;

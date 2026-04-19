@@ -7,3 +7,11 @@ export const getAll = async () => {
 export const create = async (data) => {
   return await productoModel.create(data);
 };
+
+export const update = async (id, data) => {
+  return await productoModel.update(id, data);
+};
+
+export const remove = async (id) => {
+  return await productoModel.remove(id);
+};
